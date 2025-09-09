@@ -214,7 +214,7 @@ class BigQueryAdapter(BaseAdapter):
 
     @available
     def list_schemas(self, database: str) -> List[str]:
-        return self.connections.list_dataset(database)
+        return []
 
     @available.parse(lambda *a, **k: False)
     def check_schema_exists(self, database: str, schema: str) -> bool:
