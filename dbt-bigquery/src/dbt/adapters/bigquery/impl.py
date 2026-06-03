@@ -315,7 +315,11 @@ class BigQueryAdapter(BaseAdapter):
 
     @available
     def list_schemas(self, database: str) -> List[str]:
-        return self.connections.list_dataset(database)
+        # J2 avoid-list-datasets optimization: skip connections.list_dataset(), which calls
+        # BigQuery's datasets.list API and enumerates every dataset in the project (slow with
+        # many datasets). Returning [] makes dbt issue idempotent `create schema if not exists`
+        # instead. See j2-health/dbt-bigquery v1.9.2-avoid-list-datasets.
+        return []
 
     @available.parse(lambda *a, **k: False)
     def check_schema_exists(self, database: str, schema: str) -> bool:
