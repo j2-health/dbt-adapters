@@ -1,0 +1,6 @@
+kind: Dependencies
+body: Bump upper bound of google-cloud-storage to <4 (mirrors dbt-labs/dbt-adapters#1735)
+time: 2026-10-26T12:00:00.000000+00:00
+custom:
+  Author: kbaum
+  PR: ""
